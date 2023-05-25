@@ -17,8 +17,8 @@ function App() {
       <myContext.Provider value={states}>
         <Routes>
           <Route path='/' exact Component={Home} />
-          <Route path='/login' Component={Login} />
-          <Route path='/register' Component={Register} />
+          <Route path='/login'exact Component={Login} />
+          <Route path='/register' exact Component={Register} />
         </Routes  >
       </myContext.Provider>
     </BrowserRouter>
