@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import './Register.css';
+import { myContext } from '../Context';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const data = useContext(myContext)
+    const nav = useNavigate()
+    const { name, setName, password, setPassword, email, setEmail } = data
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,10 +19,10 @@ function Register() {
 
             <form onSubmit={handleSubmit} className='form'>
                 <div className='sm'>
-                    <label htmlFor="name">Name:</label> <br/>
+                    <label htmlFor="name">Name:</label> <br />
                     <input
                         type="text"
-                        id="name"
+                        id="name" register
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
@@ -28,18 +30,18 @@ function Register() {
                     />
                 </div>
                 <div className='sm'>
-                    <label htmlFor="email" >Email:</label><br/>
+                    <label htmlFor="email" >Email:</label><br />
                     <input
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        
+
                     />
                 </div>
                 <div className='sm'>
-                    <label htmlFor="password">Password:</label><br/>
+                    <label htmlFor="password">Password:</label><br />
                     <input
                         type="password"
                         id="password"
@@ -48,8 +50,9 @@ function Register() {
                         required
                         placeholder='password'
                     />
-                </div><br/><br/><br/>
-                <button type="submit">Register</button>
+                </div><br /><br /><br />
+                <button onClick={() => nav('/login')} type="submit">Register</button>
+
             </form>
         </div>
     );
